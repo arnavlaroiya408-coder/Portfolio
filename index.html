@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Professional Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- UI Overlay -->
+    <div id="ui-container">
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="logo">IT_Student.dev</div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Main Sections wrapper for scrolling -->
+        <main class="scroll-container">
+
+            <!-- HOME SECTION -->
+            <section id="home" class="panel">
+                <div class="content">
+                    <span class="badge">Information Technology Student</span>
+                    <h1>Designing the Future of Tech</h1>
+                    <p>Hi, I am an IT student passionate about software engineering, networks, and building interactive
+                        digital experiences.</p>
+                    <a href="#about" class="btn">Explore My Work</a>
+                </div>
+            </section>
+
+            <!-- ABOUT US SECTION -->
+            <section id="about" class="panel">
+                <div class="content grid-2">
+                    <div class="text-block">
+                        <h2>About Me</h2>
+                        <p>I specialize in problem-solving and analyzing complex computer system architectures. My goal
+                            is to build secure, scalable systems that bridge the gap between complex backend
+                            architectures and seamless user experiences.</p>
+                        <h3>Core Skills</h3>
+                        <div class="skills">
+                            <span>C++ / OOPs</span>
+                            <span>System Architecture</span>
+                            <span>Web Development</span>
+                            <span>Data Structures</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="panel">
+                <div class="content">
+                    <h2>Get In Touch</h2>
+                    <p>Let's collaborate on code, systems, or professional opportunities.</p>
+                    <form class="contact-form" onsubmit="event.preventDefault();">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="4" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Include Three.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
