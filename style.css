@@ -19,9 +19,10 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     overflow-x: hidden;
+    width: 100%;
 }
 
-/* 3D Canvas should stay fixed in the background */
+/* 3D Canvas stays fixed in the background */
 #webgl-canvas {
     position: fixed;
     top: 0;
@@ -29,26 +30,28 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    pointer-events: none;
-    /* Allows scrolling through the canvas */
+    pointer-events: none; /* Crucial for mobile scrolling and form submission */
 }
 
 #ui-container {
     position: relative;
     z-index: 2;
+    width: 100%;
 }
 
 /* Navbar Layout */
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 10%;
-    background: rgba(10, 12, 16, 0.7);
+    background: rgba(10, 12, 16, 0.8);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
 }
@@ -82,23 +85,27 @@ body {
     height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on iOS */
 }
 
 .panel {
+    min-height: 100vh;
     height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 10%;
+    padding: 80px 10% 20px 10%; /* Added top padding so navbar never hides content */
     scroll-snap-align: start;
 }
 
 .content {
     background: var(--glass);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     padding: 3rem;
     border-radius: 16px;
     max-width: 650px;
+    width: 100%;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -112,13 +119,18 @@ body {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
-h1,
-h2 {
+h1, h2 {
     font-size: 2.8rem;
     margin: 1.5rem 0;
     line-height: 1.2;
+}
+
+h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.5rem 0;
 }
 
 p {
@@ -138,6 +150,7 @@ p {
     transition: transform 0.2s, box-shadow 0.2s;
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 
 .btn:hover {
@@ -176,9 +189,65 @@ p {
     border-radius: 8px;
     color: white;
     outline: none;
+    width: 100%;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: var(--primary);
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS (Media Queries)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Tighten navbar spacing for small viewports */
+    .navbar {
+        padding: 1rem 5%;
+    }
+    
+    .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.85rem;
+    }
+
+    /* Loosen side constraints so content utilizes phone width nicely */
+    .panel {
+        padding: 90px 5% 40px 5%;
+        height: auto; /* Fallback for content-heavy panels on smaller phones */
+        min-height: 100vh;
+    }
+
+    .content {
+        padding: 1.75rem; /* Prevents container from stretching past screen boundaries */
+    }
+
+    /* Dynamically scale down large header fonts */
+    h1, h2 {
+        font-size: 1.85rem;
+        margin: 1rem 0;
+    }
+
+    p {
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .btn {
+        width: 100%; /* Spans full horizontal container length for easy touch targets */
+    }
+}
+
+/* Accommodates short mobile landscapes or very small devices */
+@media (max-height: 680px) and (max-width: 768px) {
+    .scroll-container {
+        scroll-snap-type: none; /* Disables snapping if elements organically overflow screen height */
+    }
+    .panel {
+        height: auto;
+    }
+    h1, h2 {
+        font-size: 1.6rem;
+    }
 }
